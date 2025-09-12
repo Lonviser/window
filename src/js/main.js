@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     modals();
     tabs('.glazing_slider','.glazing_block','.glazing_content','active');
     tabs('.decoration_slider','.decoration_item div','.decoration_content > .row > div','active');
+    tabs('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
     forms();
 });
 
