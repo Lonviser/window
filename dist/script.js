@@ -13800,9 +13800,72 @@ const modals = () => {
   }
   bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
   bindModal('.phone_link', '.popup', '.popup .popup_close');
-  showModalByTime('.popup', 3000);
+  // showModalByTime('.popup',60000)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modals);
+
+/***/ }),
+
+/***/ "./src/js/modules/tabs.js":
+/*!********************************!*\
+  !*** ./src/js/modules/tabs.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
+  const header = document.querySelector(headerSelector);
+  const tabs = document.querySelectorAll(tabSelector); // Переименовал для ясности
+  const contents = document.querySelectorAll(contentSelector); // Переименовал для ясности
+
+  function hideTabContent() {
+    contents.forEach(item => {
+      item.style.display = 'none';
+    });
+    tabs.forEach(item => {
+      item.classList.remove(activeClass);
+    });
+  }
+  function showTabContent(i = 0) {
+    if (contents[i]) {
+      // Проверка существования элемента
+      contents[i].style.display = 'block';
+    }
+    if (tabs[i]) {
+      // Проверка существования элемента
+      tabs[i].classList.add(activeClass);
+    }
+  }
+
+  // Проверка существования header перед добавлением обработчика
+  if (header) {
+    hideTabContent();
+    showTabContent();
+    header.addEventListener('click', e => {
+      const target = e.target;
+      if (!target) return;
+
+      // Ищем ближайший родительский элемент таба
+      const potentialTab = target.closest(tabSelector);
+      if (potentialTab) {
+        tabs.forEach((item, i) => {
+          if (potentialTab === item) {
+            hideTabContent();
+            showTabContent(i);
+          }
+        });
+      }
+    });
+  } else {
+    console.warn(`Header with selector "${headerSelector}" not found.`);
+  }
+  console.log('Tabs initialized for:', headerSelector);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);
 
 /***/ }),
 
@@ -13971,10 +14034,15 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 
+
+ // Исправлено
 
 window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', '.glazing_content', 'active');
+  (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.decoration_item div', '.decoration_content > .row > div', 'active');
 });
 console.log('test');
 })();
