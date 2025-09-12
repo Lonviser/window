@@ -1,7 +1,7 @@
 const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     const header = document.querySelector(headerSelector);
-    const tabs = document.querySelectorAll(tabSelector); // Переименовал для ясности
-    const contents = document.querySelectorAll(contentSelector); // Переименовал для ясности
+    const tabs = document.querySelectorAll(tabSelector); 
+    const contents = document.querySelectorAll(contentSelector); 
 
     function hideTabContent() {
         contents.forEach(item => {
@@ -13,15 +13,15 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     }
 
     function showTabContent(i = 0) {
-        if (contents[i]) { // Проверка существования элемента
+        if (contents[i]) { 
             contents[i].style.display = 'block';
         }
-        if (tabs[i]) { // Проверка существования элемента
+        if (tabs[i]) { 
             tabs[i].classList.add(activeClass);
         }
     }
 
-    // Проверка существования header перед добавлением обработчика
+
     if (header) {
         hideTabContent();
         showTabContent();
@@ -30,7 +30,6 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
             const target = e.target; 
             if (!target) return;
 
-            // Ищем ближайший родительский элемент таба
             const potentialTab = target.closest(tabSelector);
 
             if (potentialTab) {

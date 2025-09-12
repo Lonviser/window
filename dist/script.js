@@ -13819,9 +13819,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
   const header = document.querySelector(headerSelector);
-  const tabs = document.querySelectorAll(tabSelector); // Переименовал для ясности
-  const contents = document.querySelectorAll(contentSelector); // Переименовал для ясности
-
+  const tabs = document.querySelectorAll(tabSelector);
+  const contents = document.querySelectorAll(contentSelector);
   function hideTabContent() {
     contents.forEach(item => {
       item.style.display = 'none';
@@ -13832,24 +13831,18 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
   }
   function showTabContent(i = 0) {
     if (contents[i]) {
-      // Проверка существования элемента
       contents[i].style.display = 'block';
     }
     if (tabs[i]) {
-      // Проверка существования элемента
       tabs[i].classList.add(activeClass);
     }
   }
-
-  // Проверка существования header перед добавлением обработчика
   if (header) {
     hideTabContent();
     showTabContent();
     header.addEventListener('click', e => {
       const target = e.target;
       if (!target) return;
-
-      // Ищем ближайший родительский элемент таба
       const potentialTab = target.closest(tabSelector);
       if (potentialTab) {
         tabs.forEach((item, i) => {
@@ -14037,7 +14030,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 
 
- // Исправлено
 
 window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
