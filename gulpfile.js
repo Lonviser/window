@@ -4,7 +4,7 @@ const gulp = require("gulp");
 const webpack = require("webpack-stream");
 const browsersync = require("browser-sync");
 
-const dist = "d:/Soft/xampp/htdocs/window";
+const dist = "s:/Programs/OSPanel/domains/window"; 
 
 gulp.task("copy-html", () => {
     return gulp.src("./src/index.html")
@@ -52,8 +52,8 @@ gulp.task("copy-assets", () => {
 
 gulp.task("watch", () => {
     browsersync.init({
-        server: dist,  // Исправлено: используем ту же директорию
-        port: 4000,
+        proxy: "window.local",  // Проксируем через OpenServer
+        port: 3000,
         notify: true
     });
     
